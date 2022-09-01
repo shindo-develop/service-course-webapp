@@ -23,15 +23,15 @@ function initMap() {
     // マップの中心を都庁に設定（緯度lat, 経度lng）
     const TOKYO_GOVEMENT_OFFICE = { lat: 35.689, lng: 139.691 };
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 12,
-      center: TOKYO_GOVEMENT_OFFICE,
+        zoom: 12,
+        center: TOKYO_GOVEMENT_OFFICE,
     });
     // The marker, positioned at TOKYO_GOVEMENT_OFFICE
     const marker = new google.maps.Marker({
-      position: TOKYO_GOVEMENT_OFFICE,
-      map: map,
+        position: TOKYO_GOVEMENT_OFFICE,
+        map: map,
     });
-    
+
     // 墨田区のAEDの設置場所を描画
     for(let i = 0; i < placementOfAEDList.length; i++){
         const eachPlacementOfAED = placementOfAEDList[i];
@@ -48,5 +48,5 @@ function initMap() {
         });
     };
 }
-  
+
 window.initMap = initMap;
