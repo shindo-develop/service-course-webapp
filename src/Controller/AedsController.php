@@ -112,17 +112,26 @@ class AedsController extends AppController
         Debugger::log($_body);
 
         $_serialize = '_body';
+        // ヘッダーを定義
         $_header = ['id', 'location_name', 'address', 'latitude', 'longitude', 'phone', 'usable_time', 'url'];
-        $_footer = ['これはフッターです'];
+        // フッターを定義
+        $_footer = ['この行が最終行です'];
+        // エンコーディングを指定
         $_csvEncoding = 'CP932';
+        // 改行ををwindowsを意識してCRLFにしている
         $_newline = "\r\n";
+        // 行の終わり
         $_eol = "\r\n";
 
         $this->response = $this->response
+        // ダウンロードさせるファイル形式を指定
             ->withType('csv')
+            // ダウンロードさせるファイルのデフォルト名を指定
             ->withDownload('sumidaku_aed.csv');
 
         $this->viewBuilder()->setClassName('CsvView.Csv');
+        // compactメソッドでsetすると、変数名から配列を作成してくれる
+        // compactメソッドを使えば一度で複数の変数をセット出来る
         $this->set(compact('_body', '_serialize', '_header', '_footer', '_csvEncoding', '_newline', '_eol'));
     }
 }
