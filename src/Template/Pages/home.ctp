@@ -66,6 +66,10 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 </select>
                 <button class="btn btn-outline-secondary" type="button">確定</button>
             </div>
+            <!-- ダウンロードリンクを設置 -->
+            <span class="">
+                <?= $this->Html->link(__('Download'), ['controller' => 'Aeds', 'action' => 'download']) ?>
+            </span>
         </div>
         <div class="row">
             <div id="map"></div>

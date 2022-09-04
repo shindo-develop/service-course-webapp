@@ -14,6 +14,9 @@
  */
 namespace App\Controller;
 
+// use App\Model\Entity\Aed;
+// use App\Model\Table\AedsTable;
+
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -66,4 +69,6 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
+
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Cake\Error\Debugger;
 use App\Controller\AppController;
 
 /**
@@ -102,5 +103,26 @@ class AedsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function download()
+    {
+        $_body = $this->Aeds->find()->all();
+
+        Debugger::log($_body);
+
+        $_serialize = '_body';
+        $_header = ['id', 'location_name', 'address', 'latitude', 'longitude', 'phone', 'usable_time', 'url'];
+        $_footer = ['これはフッターです'];
+        $_csvEncoding = 'CP932';
+        $_newline = "\r\n";
+        $_eol = "\r\n";
+
+        $this->response = $this->response
+            ->withType('csv')
+            ->withDownload('sumidaku_aed.csv');
+
+        $this->viewBuilder()->setClassName('CsvView.Csv');
+        $this->set(compact('_body', '_serialize', '_header', '_footer', '_csvEncoding', '_newline', '_eol'));
     }
 }
