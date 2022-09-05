@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Aed $aed
@@ -11,19 +12,25 @@
     </ul>
 </nav>
 <div class="aeds form large-9 medium-8 columns content">
-    <?= $this->Form->create($aed) ?>
     <fieldset>
-        <legend><?= __('Add Aed') ?></legend>
-        <?php
-            echo $this->Form->control('location_name');
-            echo $this->Form->control('address');
-            echo $this->Form->control('latitude');
-            echo $this->Form->control('longitude');
-            echo $this->Form->control('phone');
-            echo $this->Form->control('usable_time');
-            echo $this->Form->control('url');
-        ?>
+        <h2>一括追加</h2>
+        <?= $this->Form->create('', ['name' => 'upload_form', 'type' => 'file']); ?>
+        <div>
+            <?= $this->Form->label(__('読み込むファイルを選択してください。')) ?>
+        </div>
+        <div>
+            <?= $this->Form->file('upload_file', ['id' => 'upload_file']) ?>
+            <?= $this->Form->button(__("upload"), ['onClick' => 'upload()', 'type' => 'button']); ?>
+        </div>
+        <?= $this->Form->end() ?>
+        <?php if (isset($errors)) : ?>
+            <div>
+                <?php foreach ($errors as $error) : ?>
+                    <div><?= empty($error['LINE_NO']) ? $error['DESCRIPTION'] : 'L' . $error['LINE_NO'] . ' : ' . $error['DESCRIPTION'] ?></div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
 </div>
+<?= $this->Html->script('/js/upload') ?>

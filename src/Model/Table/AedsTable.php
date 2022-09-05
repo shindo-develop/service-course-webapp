@@ -75,7 +75,7 @@ class AedsTable extends Table
             ->scalar('phone')
             ->maxLength('phone', 15)
             ->requirePresence('phone', 'create')
-            ->allowEmptyString('phone', false);
+            ->allowEmptyString('phone', true);
 
         $validator
             ->scalar('usable_time')
